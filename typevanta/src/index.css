@@ -1,0 +1,63 @@
+:root {
+  --color-bg: #0d0f12;
+  --color-bg-elevated: #15181e;
+  --color-text-main: #f0f4f8;
+  --color-text-muted: #64748b;
+  --color-text-error: #ef4444;
+  --color-neon-blue: #00f0ff;
+  --color-neon-purple: #bd00ff;
+  
+  --font-main: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Roboto Mono', 'Fira Code', monospace;
+  
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  
+  --shadow-neon-blue: 0 0 10px rgba(0, 240, 255, 0.4), 0 0 20px rgba(0, 240, 255, 0.2);
+  --shadow-neon-purple: 0 0 10px rgba(189, 0, 255, 0.4), 0 0 20px rgba(189, 0, 255, 0.2);
+}
+
+.theme-yellow {
+  --color-bg: #0a0a0a;
+  --color-bg-elevated: #1a1a1a;
+  --color-neon-blue: #fde047; /* Yellow */
+  --color-neon-purple: #eab308; /* Darker Yellow/Orange */
+  --shadow-neon-blue: 0 0 10px rgba(253, 224, 71, 0.4), 0 0 20px rgba(253, 224, 71, 0.2);
+  --shadow-neon-purple: 0 0 10px rgba(234, 179, 8, 0.4), 0 0 20px rgba(234, 179, 8, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  font-family: var(--font-main);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.glass-panel {
+  background: rgba(21, 24, 30, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+}

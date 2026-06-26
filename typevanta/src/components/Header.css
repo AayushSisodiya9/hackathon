@@ -1,0 +1,84 @@
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 4rem;
+  width: 100%;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.logo-icon {
+  color: var(--color-neon-blue);
+  filter: drop-shadow(var(--shadow-neon-blue));
+}
+
+.logo-text {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: var(--color-text-main);
+}
+
+.text-highlight {
+  color: var(--color-neon-blue);
+  text-shadow: var(--shadow-neon-blue);
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-btn {
+  color: var(--color-text-muted);
+  transition: all var(--transition-fast);
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+.nav-btn:hover, .nav-btn.active {
+  color: var(--color-text-main);
+}
+
+.nav-btn.active {
+  background: var(--color-bg-elevated);
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.login-btn {
+  color: var(--color-neon-blue);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+}
+
+.login-btn:hover {
+  background: rgba(0, 240, 255, 0.1);
+  border-color: var(--color-neon-blue);
+}
+
+.avatar-small {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-neon-blue), var(--color-neon-purple));
+  color: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+}

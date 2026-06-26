@@ -1,0 +1,85 @@
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  animation: fadeIn var(--transition-fast);
+}
+
+.modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  padding: 2.5rem;
+  text-align: center;
+  animation: slideUp var(--transition-fast);
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: var(--color-text-muted);
+}
+
+.close-btn:hover {
+  color: var(--color-text-main);
+}
+
+.modal-title {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal-subtitle {
+  color: var(--color-text-muted);
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auth-input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-text-muted);
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  color: var(--color-text-main);
+  font-family: var(--font-main);
+  font-size: 1rem;
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.auth-input:focus {
+  border-color: var(--color-neon-blue);
+  box-shadow: var(--shadow-neon-blue);
+}
+
+.auth-submit-btn {
+  background: var(--color-text-main);
+  color: var(--color-bg);
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+}
+
+.auth-submit-btn:hover {
+  background: var(--color-neon-blue);
+  box-shadow: var(--shadow-neon-blue);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
