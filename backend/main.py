@@ -47,35 +47,38 @@ async def analyze_apk(file: UploadFile = File(...)):
     
     # Prompt Gemini for the forecast
     prompt = f"""
-    Analyze this mock Android malware sample data and generate a predictive threat intelligence report.
+    You are 'EvoMal AI', a highly advanced system that predicts malware evolution.
+    I am uploading a new Android malware sample. You must generate a highly unique, creative, and predictive threat intelligence report for this specific file.
+    
     Filename: {file.filename}
     File size: {file_size} bytes
     
-    You are 'EvoMal AI', a system that predicts malware evolution. 
-    Respond ONLY with a valid JSON object matching this structure exactly:
+    CRITICAL: DO NOT COPY THE VALUES FROM THE EXAMPLE BELOW. You MUST invent completely new, unique values, different threat scores (between 40 and 99), different DNA percentages, and a completely unique evolution tree based on what kind of malware you think '{file.filename}' might be. 
+    
+    Respond ONLY with a valid JSON object. Here is the SCHEMA you must follow (but change all the actual values/text):
     {{
         "behavioral_dna": {{
-            "Accessibility Abuse": 85,
-            "Overlay Attacks": 60,
-            "Payload Loading": 90,
-            "Credential Theft": 75
+            "Accessibility Abuse": <random_number_0_to_100>,
+            "Overlay Attacks": <random_number_0_to_100>,
+            "Payload Loading": <random_number_0_to_100>,
+            "Credential Theft": <random_number_0_to_100>
         }},
         "evolution_tree": {{
-            "root": "Current Sample (Banking Trojan)",
+            "root": "<Invent a root node name based on the filename>",
             "branches": [
-                {{"target": "OTP Stealer", "sub_branches": ["Accessibility Service Abuse"]}},
-                {{"target": "Dynamic Payload Loading", "sub_branches": ["Ransomware Encryption"]}}
+                {{"target": "<Invent future mutation 1>", "sub_branches": ["<Invent specific tactic A>"]}},
+                {{"target": "<Invent future mutation 2>", "sub_branches": ["<Invent specific tactic B>", "<Invent specific tactic C>"]}}
             ]
         }},
-        "threat_score": 87,
+        "threat_score": <random_number_40_to_99>,
         "recommendations": [
-            "Block Accessibility Services for Finance App",
-            "Implement Runtime RASP"
+            "<Invent proactive defense 1>",
+            "<Invent proactive defense 2>",
+            "<Invent proactive defense 3>"
         ]
     }}
     
-    Be creative and generate realistic values based on the filename (e.g., if the filename contains 'bank', make it a banking trojan).
-    Do not include markdown blocks like ```json in the response, just the raw JSON text.
+    Make it highly realistic for cybersecurity professionals. Do not include markdown blocks like ```json in the response, just the raw JSON text.
     """
     
     try:
