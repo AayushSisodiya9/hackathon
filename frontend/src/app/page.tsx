@@ -94,19 +94,54 @@ export default function Home() {
     <div className="dashboard-grid">
       <div className="card" style={{ gridColumn: 'span 2' }}>
         <h3 className="card-title">Static Analysis Engine (Androguard Integration)</h3>
-        <div style={{ padding: '24px', border: '1px dashed var(--border)', borderRadius: '8px', backgroundColor: '#f8fafc', marginBottom: '24px' }}>
-          <p style={{ color: 'var(--text-muted)', marginBottom: '16px' }}>Upload an APK to view decompiled manifest, classes.dex metadata, and signature info.</p>
-          <button className="button" onClick={() => setActiveTab('Evolution Forecast')}>Go to Forecast Engine</button>
-        </div>
         
-        <h4 style={{ fontWeight: 600, marginBottom: '12px' }}>Dangerous Permissions Found (Mock Data)</h4>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-          {['android.permission.BIND_ACCESSIBILITY_SERVICE', 'android.permission.READ_SMS', 'android.permission.RECEIVE_BOOT_COMPLETED', 'android.permission.SYSTEM_ALERT_WINDOW'].map(perm => (
-            <span key={perm} style={{ backgroundColor: 'var(--danger-bg)', color: 'var(--danger)', padding: '4px 12px', borderRadius: '4px', fontSize: '0.875rem', fontFamily: 'monospace' }}>
-              {perm}
-            </span>
-          ))}
-        </div>
+        {result && result.metadata ? (
+          <div>
+            <div style={{ padding: '24px', border: '1px solid var(--border)', borderRadius: '8px', backgroundColor: '#f8fafc', marginBottom: '24px' }}>
+              <h4 style={{ fontWeight: 600, marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                Analysis for: {result.filename}
+              </h4>
+              
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginTop: '16px' }}>
+                <div>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem' }}>Obfuscation / Packer Status</p>
+                  <p style={{ fontWeight: 600, color: result.metadata.obfuscated ? 'var(--danger)' : 'var(--success)' }}>
+                    {result.metadata.obfuscated ? 'Detected: ' + result.metadata.obfuscation_reason : 'Clear (No obvious packers)'}
+                  </p>
+                </div>
+                <div>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem' }}>Extracted Permissions</p>
+                  <p style={{ fontWeight: 600 }}>{result.metadata.permission_count} permissions</p>
+                </div>
+              </div>
+            </div>
+            
+            <h4 style={{ fontWeight: 600, marginBottom: '12px' }}>Verified MITRE ATT&CK Tactics</h4>
+            {result.metadata.mitre_tactics && result.metadata.mitre_tactics.length > 0 ? (
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {result.metadata.mitre_tactics.map((tactic: string, idx: number) => (
+                  <span key={idx} style={{ backgroundColor: 'var(--danger-bg)', color: 'var(--danger)', padding: '6px 14px', borderRadius: '4px', fontSize: '0.875rem', fontWeight: 500 }}>
+                    {tactic}
+                  </span>
+                ))}
+              </div>
+            ) : (
+              <p style={{ color: 'var(--text-muted)' }}>No critical MITRE tactics directly mapped from manifest.</p>
+            )}
+          </div>
+        ) : (
+          <div style={{ padding: '24px', border: '1px dashed var(--border)', borderRadius: '8px', backgroundColor: '#f8fafc', marginBottom: '24px', textAlign: 'center' }}>
+            <p style={{ color: 'var(--text-muted)', marginBottom: '16px' }}>Upload an APK in the Forecast tab first to view real-time decompiled metadata and MITRE mappings.</p>
+            <button className="button" onClick={() => setActiveTab('Evolution Forecast')}>Go to Forecast Engine</button>
+          </div>
+        )}
       </div>
     </div>
   );
